@@ -1,10 +1,5 @@
 <?php
-/* Incluye parámetros de conexión a la base de datos: 
-DB_HOST: Nombre o dirección del gestor de BD MariaDB
-DB_NAME: Nombre de la BD
-DB_USER: Usuario de la BD
-DB_PASSWORD: Contraseña del usuario de la BD
-*/
+// Incluir el archivo de configuración con la conexión a la base de datos
 include_once("config.php");
 ?>
 
@@ -26,7 +21,7 @@ include_once("config.php");
 		<li><a href="index.php">Inicio</a></li>
 		<li><a href="add.html">Añadir Servicio</a></li>
 	</ul>
-	<h2>Listado de Servicios de Decoración</h2>
+	<h2>Servicios de Decoración</h2>
 	<table border="1">
 	<thead>
 		<tr>
@@ -41,7 +36,7 @@ include_once("config.php");
 	<tbody>
 
 <?php
-// Conexión a la base de datos
+// Conectar a la base de datos
 $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 // Verificar conexión
@@ -49,11 +44,11 @@ if ($mysqli->connect_error) {
     die("Error de conexión: " . $mysqli->connect_error);
 }
 
-// Consulta para obtener los servicios de decoración
+// Consultar la tabla de servicios_eventos
 $resultado = $mysqli->query("SELECT * FROM servicios_eventos ORDER BY tipo_evento, nombre_servicio");
 
-// Verifica si hay resultados
-if ($resultado->num_rows > 0) {
+// Si hay resultados, mostrarlos en la tabla
+if ($resultado && $resultado->num_rows > 0) {
 	while($fila = $resultado->fetch_assoc()) {
 		echo "<tr>\n";
 		echo "<td>".$fila['id_servicio']."</td>\n";
@@ -71,7 +66,7 @@ if ($resultado->num_rows > 0) {
     echo "<tr><td colspan='6'>No hay servicios registrados.</td></tr>";
 }
 
-// Cierra la conexión de la BD
+// Cierra la conexión
 $mysqli->close();
 ?>
 	</tbody>
