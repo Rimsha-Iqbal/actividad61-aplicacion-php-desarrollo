@@ -1,4 +1,5 @@
 
+Create database decoraciones_con_rimsha;
 USE decoraciones_con_rimsha;
 
 CREATE TABLE servicios_eventos (
