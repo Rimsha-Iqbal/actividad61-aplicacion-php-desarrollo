@@ -46,7 +46,7 @@ include_once("config.php");
 Cada fila y cada columna de la tabla se corresponde con un registro y campo de la tabla EMPLEADOS.
 */
 
-$resultado = $mysqli->query("SELECT * FROM empleados ORDER BY apellido, nombre");
+$resultado = $mysqli->query("SELECT * FROM servicios_eventos ORDER BY tipo_evento, nombre_servicio");
 
 //Cierra la conexión de la BD
 $mysqli->close();

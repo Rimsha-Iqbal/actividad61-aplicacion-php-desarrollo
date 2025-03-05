@@ -1,7 +1,4 @@
 
-Create database decoraciones_con_rimsha;
-USE decoraciones_con_rimsha;
-
 CREATE TABLE servicios_eventos (
     id_servicio INT PRIMARY KEY AUTO_INCREMENT,
     tipo_evento VARCHAR(50) NOT NULL,
