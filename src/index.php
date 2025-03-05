@@ -26,7 +26,7 @@ include_once("config.php");
 		<li><a href="index.php">Inicio</a></li>
 		<li><a href="add.html">Alta</a></li>
 	</ul>
-	<h2>servicios Eventos</h2>
+	<h2>Servicios Eventos</h2>
 	<table border="1">
 	<thead>
 		<tr>
