@@ -3,50 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alta empleado/a</title>
+    <title>Alta Servicios Eventos</title>
 </head>
 <body>
 <div>
 	<header>
-		<h1>ELECTROSHOP S.L.</h1>
+		<h1>Decoraciones Con Rimsha</h1>
 	</header>
 	<main>				
 	<ul>
 		<li><a href="index.php">Inicio</a></li>
 		<li><a href="add.html">Alta</a></li>
 	</ul>
-	<h2>Alta empleado/a</h2>
+	<h2>Alta Servicios Eventos</h2>
 <!--FORMULARIO DE ALTA. Al hacer click en el botón Agregar, llama a la página: add.php (form action="add.php")
 La página: add.php se encargará de proceder a la inserción del registro en la tabla de empleados
 -->
 
 	<form action="add_action.php" method="post">
 		<div>
-			<label for="name">Nombre</label>
-			<input type="text" name="name" id="name" placeholder="nombre" required>
+			<label for="tipo_evento">Tipo Evento</label>
+			<input type="text" name="tipo_evento" id="tipo_evento" placeholder="tipo_evento" required>
 		</div>
 
 		<div>
-			<label for="surname">Apellido</label>
-			<input type="text" name="surname" id="surname" placeholder="apellido" required>
+			<label for="nombre_servicio">Nombre Servicio</label>
+			<select name="nombre_servicio" id="nombre_servicio" placeholder="nombre_servicio" required>
+				<option value="" disabled selected>Seleccione un servicio</option>
+				<option value="Cumpleaños">Cumpleaños</option>
+				<option value="Boda">Boda</option>
+				<option value="Corporativo">Corporativo</option>
+				<option value="Diseño Interior">Diseño Interior</option>
+			</select>
 		</div>
 
 		<div>
-			<label for="age">Edad</label>
-			<input type="number" name="age" id="age" placeholder="edad" required>
+			<label for="encargado">Encargado</label>
+			<input type="text" name="encargado" id="encargado" placeholder="encargado" required>
+		</div>
+		
+		<div>
+			<label for="contacto">Contacto</label>
+			<input type="text" name="contacto" id="contacto" placeholder="contacto" required>
+		</div>
+		
+		<div>
+			<label for="precio_estimado">Precio Estimado (€)</label>
+			<input type="number" name="precio_estimado" id="precio_estimado" placeholder="Ej: 150.00€" step="0.01" required>
+		</div>
+		
+		<div>
+			<label for="descripcion">Descripcion</label>
+			<input type="text" name="descripcion" id="descripcion" placeholder="descripcion" required>
+		</div>
+		
+		<div>
+			<label for="fecha_creacion">Fecha Creacion</label>
+			<input type="text" name="fecha_creacion" id="fecha_creacion" placeholder="fecha_creacion" readonly>
 		</div>
 
-		<div>
-			<label for="job">Puesto</label>
-			<select name="job" id="job" placeholder="puesto" required>
-				<option value="" disabled selected>Seleccione un puesto</option>
-				<option value="Administrativo">Administrativo</option>
-				<option value="Contable">Contable</option>
-				<option value="Dependiente">Dependiente</option>
-				<option value="Gerente">Gerente</option>
-				<option value="Repartidor">Repartidor</option>
-			</select>	
-		</div>
 
 		<div>
 			<input type="submit" name="inserta" value="Agregar">
@@ -56,7 +71,7 @@ La página: add.php se encargará de proceder a la inserción del registro en la
 	
 	</main>	
 	<footer>
-	Created by the IES Miguel Herrero team &copy; 2025
+	Created by RIMSHA &copy; 2025
   	</footer>
 </div>
 </body>

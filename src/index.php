@@ -31,7 +31,7 @@ include_once("config.php");
 	<thead>
 		<tr>
 			<th>Tipo Evento</th>
-			<th> Nombre Servicio</th>
+			<th>Nombre Servicio</th>
 			<th>Encargado</th>
 			<th>Contacto</th>
 			<th>Precio Estimado</th>
