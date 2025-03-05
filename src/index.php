@@ -13,12 +13,12 @@ include_once("config.php");
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">	
-	<title>Electroshop S.L.</title>
+	<title>Decoraciones Con Rimsha</title>
 </head>
 <body>
 <div>
 	<header>
-		<h1>ELECTROSHOP S.A.</h1>
+		<h1>Decoraciones Con Rimsha</h1>
 	</header>
 
 	<main>
@@ -26,7 +26,7 @@ include_once("config.php");
 		<li><a href="index.php">Inicio</a></li>
 		<li><a href="add.html">Alta</a></li>
 	</ul>
-	<h2>YA HEMOS TERMINADO!!!!!!!!</h2>
+	<h2>servicios_eventos</h2>
 	<table border="1">
 	<thead>
 		<tr>
