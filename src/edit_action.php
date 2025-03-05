@@ -8,79 +8,98 @@ include_once("config.php");
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">	
-	<title>Electroshop S.L.</title>
+	<title>Alta Servicios Eventos</title>
 </head>
 <body>
 <div>
 	<header>
-		<h1>ELECTROSHOP S.L.</h1>
+		<h1>Decoraciones Con Rimsha</h1>
 	</header>
-	<main>				
+	<main>
 
 <?php
-/*Se comprueba si se ha llegado a esta página PHP a través del formulario de edición. 
-Para ello se comprueba la variable de formulario: "modifica" enviada al pulsar el botón Guardar de dicho formulario.
+/* Se Comprueba si se ha llegado a esta página PHP a través del formulario de altas. 
+Para ello se comprueba la variable de formulario: "inserta" enviada al pulsar el botón Agregar.
 Los datos del formulario se acceden por el método: POST
 */
 
-if(isset($_POST['modifica'])) {
-/*Se obtienen los datos del empleado (id, nombre, apellido, edad y puesto) a partir del formulario de edición (idempleado, name, surname, age y job)  por el método POST.
-Se envía a través del body del HTTP Request. No aparecen en la URL como era el caso del otro método de envío de datos: GET
-Recuerda que   existen dos métodos con los que el navegador puede enviar información al servidor:
-1.- Método HTTP GET. Información se envía de forma visible. A través de la URL (header HTTP Request )
-En PHP los datos se administran con el array asociativo $_GET. En nuestro caso el dato del empleado se obiene a través de la clave: $_GET['idempleado']
-2.- Método HTTP POST. Información se envía de forma no visible. A través del cuerpo del HTTP Request 
-PHP proporciona el array asociativo $_POST para acceder a la información enviada.
-*/
+if(isset($_POST['inserta'])) 
+{
+/*Se obtienen los datos del servicio (tipo_evento, nombre_servicio, encargado, etc.) a partir del formulario de alta (name, surname, age y job) por el método POST.
+Se envía a través del body del HTTP Request. */
 
-	$idempleado = $mysqli->real_escape_string($_POST['idempleado']);
-	$name = $mysqli->real_escape_string($_POST['name']);
-	$surname = $mysqli->real_escape_string($_POST['surname']);
-	$age = $mysqli->real_escape_string($_POST['age']);
-	$job = $mysqli->real_escape_string($_POST['job']);
+	$tipo_evento = $mysqli->real_escape_string($_POST['tipo_evento']);
+	$nombre_servicio = $mysqli->real_escape_string($_POST['nombre_servicio']);
+	$encargado = $mysqli->real_escape_string($_POST['encargado']);
+	$contacto = $mysqli->real_escape_string($_POST['contacto']);
+	$precio_estimado = $mysqli->real_escape_string($_POST['precio_estimado']);
+	$descripcion = $mysqli->real_escape_string($_POST['descripcion']);
+	$fecha_creacion = $mysqli->real_escape_string($_POST['fecha_creacion']);
+	
 
-/*Con mysqli_real_scape_string protege caracteres especiales en una cadena para ser usada en una sentencia SQL.
-Esta función es usada para crear una cadena SQL legal que se puede usar en una sentencia SQL. 
-Los caracteres codificados son NUL (ASCII 0), \n, \r, \, ', ", y Control-Z.
-Ejemplo: Entrada sin escapar: "O'Reilly" contiene una comilla simple (').
-Escapado con mysqli_real_escape_string(): Se convierte en "O\'Reilly", evitando que la comilla se interprete como el fin de una cadena en SQL.
-*/	
+/* Con mysqli_real_escape_string protege caracteres especiales en una cadena para ser usada en una sentencia SQL. */
 
-//Se comprueba si existen campos del formulario vacíos
-	if(empty($name) || empty($surname) || empty($age) || empty($job))	{
-		if(empty($name)) {
-			echo "<font color='red'>Campo nombre vacío.</font><br/>";
-		}
-
-		if(empty($surname)) {
-			echo "<font color='red'>Campo apellido vacío.</font><br/>";
-		}
-
-		if(empty($age)) {
-			echo "<font color='red'>Campo edad vacío.</font><br/>";
-		}
-
-		if(empty($job)) {
-			echo "<font color='red'>Campo puesto vacío.</font><br/>";
-		}
-	} //fin si
-	else //Se realiza la modificación de un registro de la BD. 
+	//Se comprueba si existen campos del formulario vacíos
+	if(empty($tipo_evento) || empty($nombre_servicio) || empty($encargado) || empty($contacto) || empty($precio_estimado) || empty($descripcion)  || empty($fecha_creacion)) 
 	{
-		//Se actualiza el registro a modificar: update
-		$mysqli->query("UPDATE empleados SET nombre = '$name', apellido = '$surname',  edad = '$age', puesto = '$job' WHERE id = $idempleado");
+		if(empty($tipo_evento)) {
+			echo "<div>Campo tipo de evento vacío.</div>";
+		}
+
+		if(empty($nombre_servicio)) {
+			echo "<div>Campo nombre de servicio vacío.</div>";
+		}
+
+		if(empty($encargado)) {
+			echo "<div>Campo encargado vacío.</div>";
+		}
+
+		if(empty($contacto)) {
+			echo "<div>Campo contacto vacío.</div>";
+		}
+		
+		if(empty($precio_estimado)) {
+			echo "<div>Campo precio estimado vacío.</div>";
+		}
+		
+		if(empty($descripcion)) {
+			echo "<div>Campo descripción vacío.</div>";
+		}
+		
+		if(empty($fecha_creacion)) {
+			echo "<div>Campo fecha de creación vacío.</div>";
+		}
+		
+		//Enlace a la página anterior
+		//Se cierra la conexión
 		$mysqli->close();
-        echo "<div>Registro editado correctamente...</div>";
-		echo "<a href='index.php'>Ver resultado</a>";
-        //Se redirige a la página principal: index.php
-        //header("Location: index.php");
-	}// fin sino
-}//fin si
+		echo "<a href='javascript:self.history.back();'>Volver atrás</a>";
+	} //fin si
+	else //Sino existen campos de formulario vacíos se procede al alta del nuevo registro
+	{
+		//Se ejecuta una sentencia SQL. Inserta (da de alta) el nuevo registro: insert.
+		$result = $mysqli->query("INSERT INTO servicios_eventos (tipo_evento, nombre_servicio, encargado, contacto, precio_estimado, descripcion, fecha_creacion) 
+		VALUES ('$tipo_evento', '$nombre_servicio', '$encargado', '$contacto', '$precio_estimado', '$descripcion', '$fecha_creacion')");
+		
+		//Verifica si la consulta fue exitosa
+		if ($result) {
+			//Se cierra la conexión
+			$mysqli->close();
+			echo "<div>Registro añadido correctamente...</div>";
+			echo "<a href='index.php'>Ver resultado</a>";
+		} else {
+			// Si ocurrió un error al insertar el registro
+			echo "<div>Error al añadir el registro: " . $mysqli->error . "</div>";
+		}
+		//Se redirige a la página principal: index.php
+		//header("Location:index.php");
+	} //fin sino
+}
 ?>
 
-    <!--<div>Registro editado correctamente</div>
-	<a href='index.php'>Ver resultado</a>-->
-	</main>	
+</main>
 </div>
 </body>
 </html>
+
 
