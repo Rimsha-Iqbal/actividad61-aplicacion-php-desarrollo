@@ -14,6 +14,88 @@ include_once("config.php");
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">	
 	<title>Decoraciones Con Rimsha</title>
+	<style>
+		body {
+			background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+			font-family: 'Arial', sans-serif;
+			color: #333;
+			margin: 0;
+			padding: 0;
+		}
+		header {
+			background: rgba(255, 255, 255, 0.8);
+			padding: 20px;
+			text-align: center;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		}
+		h1 {
+			margin: 0;
+			font-size: 2.5em;
+			color: #ff6f61;
+		}
+		main {
+			padding: 20px;
+			background: rgba(255, 255, 255, 0.9);
+			margin: 20px auto; /* Center the main content */
+			border-radius: 10px;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			max-width: 1200px; /* Limit width for better readability */
+		}
+		ul {
+			list-style-type: none;
+			padding: 0;
+			text-align: center; /* Center the list items */
+		}
+		ul li {
+			display: inline-block; /* Display list items in a line */
+			margin: 0 15px; /* Add spacing between items */
+		}
+		ul li a {
+			text-decoration: none;
+			color: #ff6f61;
+			font-weight: bold;
+			font-size: 1.2em;
+		}
+		ul li a:hover {
+			color: #ff3b2f;
+		}
+		h2 {
+			text-align: center; /* Center the heading */
+			color: #ff6f61;
+			margin-top: 20px;
+		}
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-top: 20px;
+		}
+		table, th, td {
+			border: 1px solid #ddd;
+		}
+		th, td {
+			padding: 12px;
+			text-align: left;
+		}
+		th {
+			background-color: #ff6f61;
+			color: white;
+		}
+		tr:nth-child(even) {
+			background-color: #f9f9f9;
+		}
+		tr:hover {
+			background-color: #f1f1f1;
+		}
+		footer {
+			text-align: center;
+			padding: 10px;
+			background: rgba(255, 255, 255, 0.8);
+			position: fixed;
+			width: 100%;
+			bottom: 0;
+			box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+		}
+	</style>
 </head>
 <body>
 <div>
@@ -22,71 +104,31 @@ include_once("config.php");
 	</header>
 
 	<main>
-	<ul>
-		<li><a href="index.php">Inicio</a></li>
-		<li><a href="add.html">Alta</a></li>
-	</ul>
-	<h2>Servicios Eventos</h2>
-	<table border="1">
-	<thead>
-		<tr>
-			<th>Tipo Evento</th>
-			<th>Nombre Servicio</th>
-			<th>Encargado</th>
-			<th>Contacto</th>
-			<th>Precio Estimado</th>
-			<th>Descripcion</th>
-			<th>Fecha Creacion</th>
-		</tr>
-	</thead>
-	<tbdody>
+		<ul>
+			<li><a href="index.php">Inicio</a></li>
+			<li><a href="add.html">Alta</a></li>
+		</ul>
+		<h2>Servicios Eventos</h2>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Tipo Evento</th>
+					<th>Nombre Servicio</th>
+					<th>Encargado</th>
+					<th>Contacto</th>
+					<th>Precio Estimado</th>
+					<th>Descripcion</th>
+					<th>Fecha Creacion</th>
+				</tr>
+			</thead>
+			<tbody>
 
 <?php
-/*Se realiza una consulta de selección la tabla empleados ordenados y almacena todos los registros en una estructura especial PARECIDA a una "tabla" llamada $resultado.
-Cada fila y cada columna de la tabla se corresponde con un registro y campo de la tabla EMPLEADOS.
-*/
-
 $resultado = $mysqli->query("SELECT * FROM servicios_eventos ORDER BY tipo_evento, nombre_servicio");
 
-//Cierra la conexión de la BD
 $mysqli->close();
 
-/*
-A continuación indicamos distintos manera de leer cada fila de la tabla anterior: 
-mysqli_fetch_array()- Almacena una fila de la tabla anterior, $resultado, en un array asociativo, numérico o ambos
-mysqli_fetch_assoc()-  Almacena una fila de la tabla anterior, , $resultado, SOLO en un array asociativo
-mysqli_fetch_row() - Almacena una fila de la tabla anterior, , $resultado, en un array numérico
-
-Veamos la diferencia entre un array numérico y asosiativo. Antes que nada supongamos que hemos leido el 1º registro de la tabla:
-id=1
-apellido=Coloma
-nombre=Javier
-edad=25
-puesto=contable
-
-ARRAYS NUMÉRICO (se accede por índice). Donde los índices se corresponde con la POSICIÓN de cada campo en la tabla de empleados: 0->id, 1->Apellido, 2->Nombre, 3->Edad y 4-> Puesto
-$fila[0] -> Contiene el contenido del campo id del empleado: 1
-$fila[1] -> Contiene el contenido del campo apellido: Coloma
-$fila[2] -> Contiene el contenido del campo apellido: Javier
-$fila[3] -> Contiene el contenido del campo edad: 25
-$fila[4] -> Contiene el el contenido del campo puesto: contable
-
-ARRAYS ASOCIATIVO (se acceder por nombre): Donde los índices (conocidos como claves) se corresponde con el NOMBRE de cada campo de la tabla de empleados: id, apellido, nombre, edad y puesto.
-$fila["id"] -> Contiene el contenido del campo id del empleado actual: 1
-$fila["apellido"] -> Contiene el contenido del campo apellido: Coloma
-$fila["nombre"] -> Contiene el contenido del campo nombre: Javier 
-$fila["edad"] -> Contiene el contenido del campo edad: 25
-$fila["puesto"] -> Contiene el el contenido del campo puesto: contable
-*/
-
-//Comprobamos si el nº de fila/registros es mayor que 0
- if ($resultado->num_rows > 0) {
-
-/* A través de la estructura repetitiva "while" se recorre la "tabla" $resultados almacenando cada línea/registro en el array asociativo $fila. 
-Recuerda que $fila contiene el contenido de todos los campos del registro actual tal como explicamos anteriormente.
-El bucle finaliza cuando se llegue a la última línea (o registro) de la tabla $resultado. 
-A medida que avanza se va consturyendo cada fila de la tabla HTML con todos los campos del empleado, hasta completar todos los registros*/
-
+if ($resultado->num_rows > 0) {
 	while($fila = $resultado->fetch_array()) {
 		echo "<tr>\n";
 		echo "<td>".$fila['tipo_evento']."</td>\n";
@@ -97,18 +139,15 @@ A medida que avanza se va consturyendo cada fila de la tabla HTML con todos los 
 		echo "<td>".$fila['descripcion']."</td>\n";
 		echo "<td>".$fila['fecha_creacion']."</td>\n";
 		echo "<td>";
-/* En la última columna se añade dos enlaces para editar y modificar el registro correspondiente. 
-Los datos se pueden enviar entre distintas páginas siguiendo distintos métodos. En este caso el id del registro a editar/eliminar se pasa a través de la URL. 
-Este forma de pasar el dato se conoce como: método GET*/
 		echo "<a href=\"edit.php?id_servicio={$fila['id_servicio']}\">Editar</a> | ";
         echo "<a href=\"delete.php?id_servicio={$fila['id_servicio']}\" onClick=\"return confirm('¿Está segur@ que desea eliminar este servicio?')\">Eliminar</a>";
 		echo "</td>";
 		echo "</tr>\n";
-	}//fin mientras
- }//fin si
+	}
+}
 ?>
-	</tbdody>
-	</table>
+			</tbody>
+		</table>
 	</main>
 	<footer>
     	Created by RIMSHA &copy; 2025
