@@ -40,7 +40,7 @@ Se envía a través del body del HTTP Request. */
 /* Con mysqli_real_escape_string protege caracteres especiales en una cadena para ser usada en una sentencia SQL. */
 
 	//Se comprueba si existen campos del formulario vacíos
-	if(empty($tipo_evento) || empty($nombre_servicio) || empty($encargado) || empty($contacto) || empty($precio_estimado) || empty($descripcion)  || empty($fecha_creacion)) 
+	if(empty($tipo_evento) || empty($nombre_servicio) || empty($encargado) || empty($contacto) || empty($precio_estimado) || empty($descripcion)  ) 
 	{
 		if(empty($tipo_evento)) {
 			echo "<div>Campo tipo de evento vacío.</div>";
