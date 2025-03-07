@@ -66,9 +66,7 @@ Se envía a través del body del HTTP Request. */
 			echo "<div>Campo descripción vacío.</div>";
 		}
 		
-		if(empty($fecha_creacion)) {
-			echo "<div>Campo fecha de creación vacío.</div>";
-		}
+		
 		
 		//Enlace a la página anterior
 		//Se cierra la conexión
