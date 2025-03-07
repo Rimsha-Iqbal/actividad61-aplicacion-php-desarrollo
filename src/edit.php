@@ -37,6 +37,7 @@ $resultado = $mysqli->query("SELECT tipo_evento, nombre_servicio, encargado, con
 
 //Se extrae el registro y lo guarda en el array $fila
 $fila = $resultado->fetch_array();
+
 $tipo_evento = $fila['tipo_evento'];
 $nombre_servicio = $fila['nombre_servicio'];
 $encargado = $fila['encargado'];

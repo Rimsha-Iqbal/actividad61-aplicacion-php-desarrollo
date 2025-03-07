@@ -7,7 +7,7 @@ CREATE TABLE servicios_eventos (
     contacto VARCHAR(50) NOT NULL,
     precio_estimado DECIMAL(10,2) NOT NULL,
     descripcion TEXT,
-    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    fecha_creacion  DATE DEFAULT (CURRENT_DATE)
 );
 
 

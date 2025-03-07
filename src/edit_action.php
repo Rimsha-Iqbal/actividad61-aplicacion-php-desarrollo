@@ -23,11 +23,12 @@ Para ello se comprueba la variable de formulario: "inserta" enviada al pulsar el
 Los datos del formulario se acceden por el método: POST
 */
 
-if(isset($_POST['inserta'])) 
+if(isset($_POST['modifica'])) 
 {
 /*Se obtienen los datos del servicio (tipo_evento, nombre_servicio, encargado, etc.) a partir del formulario de alta (name, surname, age y job) por el método POST.
 Se envía a través del body del HTTP Request. */
 
+	$id_servicio = $mysqli->real_escape_string($_POST['id_servicio']);
 	$tipo_evento = $mysqli->real_escape_string($_POST['tipo_evento']);
 	$nombre_servicio = $mysqli->real_escape_string($_POST['nombre_servicio']);
 	$encargado = $mysqli->real_escape_string($_POST['encargado']);
@@ -76,19 +77,15 @@ Se envía a través del body del HTTP Request. */
 	else //Sino existen campos de formulario vacíos se procede al alta del nuevo registro
 	{
 		//Se ejecuta una sentencia SQL. Inserta (da de alta) el nuevo registro: insert.
-		$result = $mysqli->query("INSERT INTO servicios_eventos (tipo_evento, nombre_servicio, encargado, contacto, precio_estimado, descripcion, fecha_creacion) 
-		VALUES ('$tipo_evento', '$nombre_servicio', '$encargado', '$contacto', '$precio_estimado', '$descripcion', '$fecha_creacion')");
+		
+		$mysqli->query("UPDATE servicios_eventos SET tipo_evento = '$tipo_evento', nombre_servicio = '$nombre_servicio',  encargado = '$encargado', contacto = '$contacto', precio_estimado = '$precio_estimado', descripcion = '$descripcion', fecha_creacion = '$fecha_creacion'  WHERE id_servicio = $id_servicio");
+			
+	
 		
 		//Verifica si la consulta fue exitosa
-		if ($result) {
-			//Se cierra la conexión
-			$mysqli->close();
-			echo "<div>Registro añadido correctamente...</div>";
-			echo "<a href='index.php'>Ver resultado</a>";
-		} else {
-			// Si ocurrió un error al insertar el registro
-			echo "<div>Error al añadir el registro: " . $mysqli->error . "</div>";
-		}
+		$mysqli->close();
+        echo "<div>Registro editado correctamente...</div>";
+		echo "<a href='index.php'>Ver resultado</a>";
 		//Se redirige a la página principal: index.php
 		//header("Location:index.php");
 	} //fin sino
