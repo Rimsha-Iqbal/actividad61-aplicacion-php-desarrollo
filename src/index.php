@@ -1,11 +1,7 @@
 <?php
-/*Incluye parámetros de conexión a la base de datos: 
-DB_HOST: Nombre o dirección del gestor de BD MariaDB
-DB_NAME: Nombre de la BD
-DB_USER: Usuario de la BD
-DB_PASSWORD: Contraseña del usuario de la BD
-*/
 include_once("config.php");
+
+$resultado = $mysqli->query("SELECT * FROM servicios_eventos ORDER BY tipo_evento, nombre_servicio");
 ?>
 
 <!DOCTYPE html>
@@ -14,8 +10,6 @@ include_once("config.php");
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">	
 	<title>Decoraciones Con Rimsha</title>
-	
-		
 </head>
 <body>
 <div>
@@ -39,15 +33,12 @@ include_once("config.php");
 					<th>Precio Estimado</th>
 					<th>Descripcion</th>
 					<th>Fecha Creacion</th>
+					<th>Acciones</th>
 				</tr>
 			</thead>
 			<tbody>
 
 <?php
-$resultado = $mysqli->query("SELECT * FROM servicios_eventos ORDER BY tipo_evento, nombre_servicio");
-
-$mysqli->close();
-
 if ($resultado->num_rows > 0) {
 	while($fila = $resultado->fetch_array()) {
 		echo "<tr>\n";
@@ -64,7 +55,11 @@ if ($resultado->num_rows > 0) {
 		echo "</td>";
 		echo "</tr>\n";
 	}
+} else {
+    echo "<tr><td colspan='8'>No hay servicios disponibles.</td></tr>";
 }
+
+$mysqli->close(); // Close after fetching results
 ?>
 			</tbody>
 		</table>

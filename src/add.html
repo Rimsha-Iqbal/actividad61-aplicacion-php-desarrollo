@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,9 +16,6 @@
 		<li><a href="add.html">Alta</a></li>
 	</ul>
 	<h2>Alta Servicios Eventos</h2>
-<!--FORMULARIO DE ALTA. Al hacer click en el botón Agregar, llama a la página: add.php (form action="add.php")
-La página: add.php se encargará de proceder a la inserción del registro en la tabla de empleados
--->
 
 	<form action="add_action.php" method="post">
 		<div>
@@ -28,7 +25,7 @@ La página: add.php se encargará de proceder a la inserción del registro en la
 
 		<div>
 			<label for="nombre_servicio">Nombre Servicio</label>
-			<select name="nombre_servicio" id="nombre_servicio" placeholder="nombre_servicio" required>
+			<select name="nombre_servicio" id="nombre_servicio" required>
 				<option value="" disabled selected>Seleccione un servicio</option>
 				<option value="Cumpleaños">Cumpleaños</option>
 				<option value="Boda">Boda</option>
@@ -59,9 +56,8 @@ La página: add.php se encargará de proceder a la inserción del registro en la
 		
 		<div>
 			<label for="fecha_creacion">Fecha Creacion</label>
-			<input type="text" name="fecha_creacion" id="fecha_creacion" placeholder="fecha_creacion" readonly>
+			<input type="text" name="fecha_creacion" id="fecha_creacion" readonly>
 		</div>
-
 
 		<div>
 			<input type="submit" name="inserta" value="Agregar">
@@ -74,5 +70,13 @@ La página: add.php se encargará de proceder a la inserción del registro en la
 	Created by RIMSHA &copy; 2025
   	</footer>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let fecha = new Date().toISOString().split('T')[0]; 
+        document.getElementById("fecha_creacion").value = fecha;
+    });
+</script>
+
 </body>
 </html>
