@@ -20,7 +20,7 @@ include_once("config.php");
 <body>
 <div>
 	<header>
-		<h1>Decoraciones Con Rimshaaa</h1>
+		<h1>Decoraciones Con Rimshaaa y Hafsa</h1>
 	</header>
 
 	<main>
