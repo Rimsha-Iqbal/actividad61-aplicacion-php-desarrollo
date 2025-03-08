@@ -43,7 +43,7 @@ jobs:
 # Sube la imagen a un registro      
       - name: Subir imagen a Docker Hub (PUSH)
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/lamp-crud-app:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/actividad61-aplicacion-crud-php:latest
 
 # Otra manera es usar una GitHub Actions que contruye y sube la imagen al registro de Docker Hub
       #- name: Build and push
