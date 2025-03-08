@@ -51,7 +51,7 @@ jobs:
       #  with:
       #    context: .
       #    push: true
-      #    tags: ${{ secrets.DOCKER_USERNAME }}/lamp-crud-app:latest
+      #    tags: ${{ secrets.DOCKER_USERNAME }}/actividad61-aplicacion-crud-php:latest
 
  
 # Trabajo/job 2 (deploy): Despliegue contínuo (CD). Actualiza aplicación  en producción y descarga la imagen del registro de contenedores (Docker Hub)      
@@ -74,7 +74,7 @@ jobs:
            key: ${{ secrets.SSH_KEY }}
            port: ${{ secrets.SSH_PORT }}   
            script: |
-               cd environment/aplicacion-crud-php-produccion/
+               cd environment/actividad61-aplicacion-crud-php:latest/
                git pull origin main
                docker compose down
                docker compose pull apache
