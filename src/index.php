@@ -13,7 +13,7 @@ include_once("config.php");
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">	
-	<title>Decoraciones Con Rimsha</title>
+	<title>Decoraciones Con Rimsha. PROBADO!!!!!</title>
 	
 		
 </head>
